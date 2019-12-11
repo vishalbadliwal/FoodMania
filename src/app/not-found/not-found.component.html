@@ -1,0 +1,10 @@
+<div class="conatiner background">
+    <div class="jumbotron text-center">
+        <h1 *ngIf='errorCode'>Error Occured <br>({{errorCode}})</h1>
+        <h1 *ngIf='errMsg'>{{errMsg}}</h1>
+        <P> Please try again later.<br>
+        </P>
+        <button class="btn btn-primary btn-lg" [routerLink]="['/home']">Home</button>
+    </div>
+
+</div>

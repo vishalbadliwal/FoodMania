@@ -1,0 +1,49 @@
+<div class="container background">
+  <!-- Detail view of restaurant in card html starts here -->
+  <div class="row">
+    <div class="col" *ngIf='restoData'>
+      <div class="card mb-5" style="max-width: 80vw;">
+        <div class="row no-gutters">
+          <div class="col-sm-7">
+            <img src="{{restoData.featured_image}}" class="card-img">
+          </div>
+          <div class="col-sm-5">
+            <div class="card-body">
+              <b>
+                <h1 class="card-title" style="color: red;">{{restoData.name}}</h1>
+              </b>
+              <div class="rating-text">
+                <h6>{{restoData.user_rating.aggregate_rating}}/5</h6>
+                <small>{{restoData.user_rating.votes}} votes</small>
+              </div>
+              <span class="card-text">{{restoData.location.locality}}--{{restoData.cuisines}}</span>
+              <p class="card-text"><small>{{restoData.location.address}}</small></p>
+              <p>Opening hours : <b>{{restoData.timings}}</b></p>
+              <p>Average Cost : <b>{{restoData.average_cost_for_two}} for two people (approx.) </b></p>
+              <p>Services : <b>{{restoData.highlights}}</b></p>
+              <p>Phone number : <b>{{restoData.phone_numbers}}</b></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Detail view of restaurant in card html end here -->
+  <!-- Customer reviews html starts here -->
+  <div class="row">
+    <div class="col" *ngIf="restoData">
+      <h3> Customer reviews </h3>
+      <h6 class="review">{{restoData.user_rating.aggregate_rating}} out of 5</h6>
+      <div class="customer" *ngFor="let custom of reviewData">
+        <div class="card-body"> <span>
+            <h5><img src="{{custom.review.user.profile_image}}"> {{custom.review.user.name}}</h5>
+          </span>
+          <p class="text-muted">{{custom.review.review_time_friendly}}</p>
+          <small>RATED {{custom.review.rating}}.0 <span style="color:red">{{custom.review.rating_text}}</span></small>
+          <p class="text-muted">{{custom.review.review_text}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Customer reviews html end here -->
+</div>

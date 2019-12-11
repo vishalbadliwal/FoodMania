@@ -1,0 +1,11 @@
+.welcome{
+    text-align: center ;
+    font-family:  sans-serif;
+    color: red;
+}
+.image{
+    background-image: url("https://www.medicalnewstoday.com/content/images/articles/325/325521/illustration-of-different-plates-of-food.jpg");
+    height: 70vh;
+
+}
+

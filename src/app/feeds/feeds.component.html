@@ -1,0 +1,49 @@
+<div class="container-fluid background" >
+  <!-- Search bar html starts here -->
+  <div class="row">
+    <div class="col">
+      <div class="title">FoodMania</div>
+      <div class="searchBar">
+        <input class="col-md-2" [(ngModel)]='searchValue' placeholder="Enter City " type="text"
+          (change)="searchLocation($event.target.value)" required>
+        <input class="col-md-4" placeholder="Search by Restaurant name" type="text" #query list="abc">
+        <datalist id="abc" >
+          <div *ngFor="let resto of allData">
+            <option value="{{resto.restaurant.name}}"></option>
+          </div>
+        </datalist>
+        <button [disabled]='searchValue=="null"||searchValue=="undefined"||searchValue==""'
+          (click)="searchResto(query.value)">Search</button><br><br><br>
+      </div>
+    </div>
+  </div>
+  <!-- Search bar html end here -->
+  <!-- Details of restaurant in card html starts here -->
+  <div class="row" style="text-align:center" >
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8" style="text-align:center" *ngFor='let resto of allData'>
+      <div class="card" style="width: 17rem;">
+        <img src="{{resto.restaurant.featured_image}}" class="card-img-top">
+        <div class="rate">{{resto.restaurant.user_rating.aggregate_rating}}</div>
+        <div class="card-body" style="color:cadetblue;">
+          <h5 class="card-title" [routerLink]="['/details',resto.restaurant.R.res_id]">{{resto.restaurant.name}}
+          </h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <h6 class="list-group-item"><strong>{{resto.restaurant.location.address}}</strong></h6>
+          <small class="list-group-item">CUISINES: <strong>{{resto.restaurant.cuisines}}</strong></small>
+          <small class="list-group-item">COST FOR TWO:
+            <strong>{{resto.restaurant.average_cost_for_two}}</strong></small>
+        </ul>
+      </div>
+    </div>
+  </div><br>
+  <!-- Details of restaurant in card form html end here -->
+  <!-- pagination html starts here -->
+  <div class="row" *ngIf="allData">
+    <div class="col d-flex justify-content-between" *ngIf='allData.length>=20'>
+      <button (click)="previousPage()" [disabled]="this.start<19" >Previous Page</button>
+      <button (click)="nextPage()">Next Page</button>
+    </div>
+  </div><br><br>
+    <!-- pagination html end here -->
+</div>
